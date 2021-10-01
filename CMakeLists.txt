@@ -20,6 +20,11 @@ if (ENABLE_TESTS)
     add_subdirectory(test)
 endif()
 
+option(ENABLE_BENCHMARK "Enable benchmark" ON)
+if (ENABLE_BENCHMARK)
+    add_subdirectory(benchmark)
+endif()
+
 option(ENABLE_EXAMPLE "Enable example" ON)
 if (ENABLE_EXAMPLE)
     add_subdirectory(example)
