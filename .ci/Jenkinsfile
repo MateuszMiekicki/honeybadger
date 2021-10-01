@@ -5,9 +5,25 @@ pipeline {
         }
     }
     stages {
-        stage('Test') {
+        stage('test') {
+            agent {
+                docker {
+                    image 'ubuntu:bionic'
+                }
+            }
             steps {
-                sh 'node --version'
+                sh 'lsb_release -a'
+            }
+        }
+        stage('Build') {
+            agent {
+                docker {
+                    image 'gcc:bullseye'
+                }
+            }
+            steps {
+                sh 'g++ --version'
+                sh 'lsb_release -a'
             }
         }
     }
