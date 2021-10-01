@@ -2,6 +2,7 @@ JavaScript GUI Lib: ACE Editor bundle plugin (ace-editor): 1.1
 Ant Plugin (ant): 1.11
 OWASP Markup Formatter Plugin (antisamy-markup-formatter): 2.1
 Apache HttpComponents Client 4.x API Plugin (apache-httpcomponents-client-4-api): 4.5.13-1.0
+Authentication Tokens API Plugin (authentication-tokens): 1.4
 Bootstrap 4 API Plugin (bootstrap4-api): 4.6.0-3
 Bootstrap 5 API Plugin (bootstrap5-api): 5.1.1-1
 bouncycastle API Plugin (bouncycastle-api): 2.25
@@ -11,19 +12,23 @@ Caffeine API Plugin (caffeine-api): 2.9.2-29.v717aac953ff3
 Checks API plugin (checks-api): 1.7.2
 Folders Plugin (cloudbees-folder): 6.16
 Command Agent Launcher Plugin (command-launcher): 1.6
-Credentials Binding Plugin (credentials-binding): 1.27
 Credentials Plugin (credentials): 2.6.1
+Credentials Binding Plugin (credentials-binding): 1.27
 Display URL API (display-url-api): 2.3.5
+Docker Commons Plugin (docker-commons): 1.17
+Docker API Plugin (docker-java-api): 3.1.5.2
+Docker plugin (docker-plugin): 1.2.3
+Docker Pipeline (docker-workflow): 1.26
 Durable Task Plugin (durable-task): 1.39
 ECharts API Plugin (echarts-api): 5.1.2-11
 Email Extension Plugin (email-ext): 2.83
 Font Awesome API Plugin (font-awesome-api): 5.15.4-1
-Git client plugin (git-client): 3.9.0
-GIT server Plugin (git-server): 1.10
 Git plugin (git): 4.8.2
+Git client plugin (git-client): 3.10.0
+GIT server Plugin (git-server): 1.10
+GitHub plugin (github): 1.34.1
 GitHub API Plugin (github-api): 1.133
 GitHub Branch Source Plugin (github-branch-source): 2.11.3
-GitHub plugin (github): 1.34.1
 Gradle Plugin (gradle): 1.37.1
 JavaScript GUI Lib: Handlebars bundle plugin (handlebars): 3.0.8
 Jackson 2 API Plugin (jackson2-api): 2.12.4
@@ -72,8 +77,8 @@ Trilead API Plugin (trilead-api): 1.0.13
 Pipeline (workflow-aggregator): 2.6
 Pipeline: API (workflow-api): 2.46
 Pipeline: Basic Steps (workflow-basic-steps): 2.24
-Pipeline: Shared Groovy Libraries (workflow-cps-global-lib): 2.21
 Pipeline: Groovy (workflow-cps): 2.94
+Pipeline: Shared Groovy Libraries (workflow-cps-global-lib): 2.21
 Pipeline: Nodes and Processes (workflow-durable-task-step): 2.40
 Pipeline: Job (workflow-job): 2.41
 Pipeline: Multibranch (workflow-multibranch): 2.26
@@ -81,4 +86,3 @@ Pipeline: SCM Step (workflow-scm-step): 2.13
 Pipeline: Step API (workflow-step-api): 2.24
 Pipeline: Supporting APIs (workflow-support): 3.8
 Workspace Cleanup Plugin (ws-cleanup): 0.39
-Result: [Plugin:ace-editor, Plugin:ant, Plugin:antisamy-markup-formatter, Plugin:apache-httpcomponents-client-4-api, Plugin:bootstrap4-api, Plugin:bootstrap5-api, Plugin:bouncycastle-api, Plugin:branch-api, Plugin:build-timeout, Plugin:caffeine-api, Plugin:checks-api, Plugin:cloudbees-folder, Plugin:command-launcher, Plugin:credentials-binding, Plugin:credentials, Plugin:display-url-api, Plugin:durable-task, Plugin:echarts-api, Plugin:email-ext, Plugin:font-awesome-api, Plugin:git-client, Plugin:git-server, Plugin:git, Plugin:github-api, Plugin:github-branch-source, Plugin:github, Plugin:gradle, Plugin:handlebars, Plugin:jackson2-api, Plugin:jaxb, Plugin:jdk-tool, Plugin:jjwt-api, Plugin:jquery3-api, Plugin:jsch, Plugin:junit, Plugin:ldap, Plugin:lockable-resources, Plugin:mailer, Plugin:matrix-auth, Plugin:matrix-project, Plugin:momentjs, Plugin:okhttp-api, Plugin:pam-auth, Plugin:pipeline-build-step, Plugin:pipeline-github-lib, Plugin:pipeline-graph-analysis, Plugin:pipeline-input-step, Plugin:pipeline-milestone-step, Plugin:pipeline-model-api, Plugin:pipeline-model-definition, Plugin:pipeline-model-extensions, Plugin:pipeline-rest-api, Plugin:pipeline-stage-step, Plugin:pipeline-stage-tags-metadata, Plugin:pipeline-stage-view, Plugin:plain-credentials, Plugin:plugin-util-api, Plugin:popper-api, Plugin:popper2-api, Plugin:resource-disposer, Plugin:scm-api, Plugin:script-security, Plugin:snakeyaml-api, Plugin:sonar, Plugin:ssh-credentials, Plugin:ssh-slaves, Plugin:sshd, Plugin:structs, Plugin:timestamper, Plugin:token-macro, Plugin:trilead-api, Plugin:workflow-aggregator, Plugin:workflow-api, Plugin:workflow-basic-steps, Plugin:workflow-cps-global-lib, Plugin:workflow-cps, Plugin:workflow-durable-task-step, Plugin:workflow-job, Plugin:workflow-multibranch, Plugin:workflow-scm-step, Plugin:workflow-step-api, Plugin:workflow-support, Plugin:ws-cleanup]
