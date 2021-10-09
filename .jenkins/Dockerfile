@@ -1,5 +1,7 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:lts-jdk11
 USER root
-RUN apt-get -y update && apt-get -y upgrade && apt-get install -y nano && rm -rf /var/lib/apt/lists/*
-COPY plugins.txt /usr/share/jenkins/plugins.txt
-RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
+RUN apt-get -y update && \
+    apt-get -y upgrade && \
+    rm -rf /var/lib/apt/lists/*
+# COPY plugins.txt /usr/share/jenkins/plugins.txt
+# RUN jenkins-plugin-cli -f /usr/share/jenkins/plugins.txt

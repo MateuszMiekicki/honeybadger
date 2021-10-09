@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.18)
 project(ocr VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if(MSVC)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+endif()
 
 if(NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE MATCHES "Release")
     set(CMAKE_BUILD_TYPE Release)
@@ -9,10 +13,6 @@ elseif(CMAKE_BUILD_TYPE MATCHES "Debug")
 else()
     message(FATAL_ERROR "Available build types: Debug and Release.")
 endif(NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE MATCHES "Release")
-
-if(MSVC)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-endif()
 
 option(ENABLE_TESTS "Enable tests" ON)
 if (ENABLE_TESTS)
@@ -33,4 +33,4 @@ endif()
 option(ENABLE_DOC "Enable documentation" ON)
 if (ENABLE_DOC)
     include(${CMAKE_SOURCE_DIR}/cmake/doxygen.cmake)
-endif ()
+endif()
