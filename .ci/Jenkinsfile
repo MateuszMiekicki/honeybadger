@@ -44,14 +44,6 @@ pipeline {
     // }
 
     stages {
-        stage('Setup') {
-            steps {
-                dir ('build') {
-                    deleteDir()
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 dir('build') {
@@ -66,10 +58,9 @@ pipeline {
                 environment name: 'RUN_TESTS', value: 'true'
             }
             steps {
-                // sh 'ls'
-                // sh 'cd build && ls -a && cd bin && ls'
-                // sh './ocr_test'
-                sh 'cd build && ctest --parallel 14 -C Release -T test --output-on-failure --test-dir ./build'
+                dir('build') {
+                    sh 'ctest --parallel 14 -C Release -M Continuous -T test --output-on-failure --output-junit'
+                }
             }
         }
 
@@ -91,6 +82,17 @@ pipeline {
                 sh label: '', returnStatus: true, script: '''cp jenkinsexample ~
                 cp test/testPro ~'''
             }
+        }
+
+        post {
+            always {
+                deleteDir()
+            }
+                failure {
+                mail to: 'mutnptdbsvdlkpkprw@sdvgeft.com',
+                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                    body: "Something is wrong with ${env.BUILD_URL}"
+        }
         }
     }
 }
