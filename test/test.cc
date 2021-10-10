@@ -40,5 +40,5 @@ TEST(CTest_test, test3)
 
 TEST(CTest_test, test4)
 {
-    ASSERT_FLOAT_EQ(3.14, 3.14);
+    ASSERT_FLOAT_EQ(3.1, 3.14);
 }

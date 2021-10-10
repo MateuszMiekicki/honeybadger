@@ -83,16 +83,15 @@ pipeline {
                 cp test/testPro ~'''
             }
         }
-
-        post {
-            always {
-                deleteDir()
-            }
-                failure {
-                mail to: 'mutnptdbsvdlkpkprw@sdvgeft.com',
-                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                    body: "Something is wrong with ${env.BUILD_URL}"
+    }
+    post {
+        always {
+            deleteDir()
         }
+            failure {
+            mail to: 'mutnptdbsvdlkpkprw@sdvgeft.com',
+                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
