@@ -3,6 +3,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/googletest.cmake)
 
 add_executable(${PROJECT_NAME}_test
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/test.cc
 )
 target_link_libraries(${PROJECT_NAME}_test
     PRIVATE
