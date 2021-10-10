@@ -59,13 +59,7 @@ pipeline {
             }
             steps {
                 dir('build') {
-                    sh 'ctest --parallel 14 -C Release-T test --output-on-failure --output-junit'
-                    dir("Testing") {
-                        sh 'ls'
-                        dir('20211010-1925') {
-                            sh 'ls'
-                        }
-                    }
+                    sh 'ctest --parallel 14 --build-config Release --test-action test --output-on-failure --no-compress-output'
                 }
             }
         }
@@ -75,8 +69,7 @@ pipeline {
                 environment name: 'RUN_ANALYSIS', value: 'true'
             }
             steps {
-                sh label: '', returnStatus: true, script: 'cppcheck . --xml --language=c++ --suppressions-list=suppressions.txt 2> cppcheck-result.xml'
-                publishCppcheck allowNoReport: true, ignoreBlankFiles: true, pattern: '**/cppcheck-result.xml'
+                echo 'RUN_ANALYSIS'
             }
         }
 
@@ -85,19 +78,39 @@ pipeline {
                 environment name: 'DEPLOY', value: 'true'
             }
             steps {
-                sh label: '', returnStatus: true, script: '''cp jenkinsexample ~
-                cp test/testPro ~'''
+                echo 'DEPLOY'
             }
         }
     }
-    // post {
-    //     always {
-    //         deleteDir()
-    //     }
-    //         failure {
-    //         mail to: 'mutnptdbsvdlkpkprw@sdvgeft.com',
-    //             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-    //             body: "Something is wrong with ${env.BUILD_URL}"
-    //     }
-    // }
+    post {
+        always {
+            deleteDir()
+            echo "${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) (${GIT_COMMIT})"
+        }
+        failure {
+            mail to: 'nxjzuignevhqestmte@sdvgeft.com',
+                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                body: "Something is wrong with ${env.BUILD_URL}"
+        }
+    }
+}
+
+
+def notifySuccessful() {
+    slackSend (
+        color: '#00FF00',
+        message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+
+    hipchatSend (
+        color: 'GREEN',
+        notify: true,
+        message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+        )
+
+    emailext (
+        subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+        body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+        recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+        )
 }
