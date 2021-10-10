@@ -59,7 +59,13 @@ pipeline {
             }
             steps {
                 dir('build') {
-                    sh 'ctest --parallel 14 -C Release -M Continuous -T test --output-on-failure --output-junit'
+                    sh 'ctest --parallel 14 -C Release-T test --output-on-failure --output-junit'
+                    dir("Testing") {
+                        sh 'ls'
+                        dir('20211010-1925') {
+                            sh 'ls'
+                        }
+                    }
                 }
             }
         }
@@ -84,14 +90,14 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            deleteDir()
-        }
-            failure {
-            mail to: 'mutnptdbsvdlkpkprw@sdvgeft.com',
-                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                body: "Something is wrong with ${env.BUILD_URL}"
-        }
-    }
+    // post {
+    //     always {
+    //         deleteDir()
+    //     }
+    //         failure {
+    //         mail to: 'mutnptdbsvdlkpkprw@sdvgeft.com',
+    //             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+    //             body: "Something is wrong with ${env.BUILD_URL}"
+    //     }
+    // }
 }
