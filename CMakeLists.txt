@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.18)
 project(ocr VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+string(TIMESTAMP NOW "%Y-%m-%dT%H:%M:%SZ")
+message("version: "
+    "${PROJECT_VERSION_MAJOR}."
+    "${PROJECT_VERSION_MINOR}."
+    "${PROJECT_VERSION_PATCH}-"
+    "${NOW}"
+)
+
 if(MSVC)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 endif()
