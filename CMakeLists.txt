@@ -3,12 +3,8 @@ project(ocr VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 string(TIMESTAMP NOW "%Y-%m-%dT%H:%M:%SZ")
-message("version: "
-    "${PROJECT_VERSION_MAJOR}."
-    "${PROJECT_VERSION_MINOR}."
-    "${PROJECT_VERSION_PATCH}-"
-    "${NOW}"
-)
+set(CURRENT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}-${NOW}")
+message("version: ${CURRENT_VERSION}")
 
 if(MSVC)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -25,17 +21,17 @@ endif(NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE MATCHES "Release")
 option(ENABLE_TESTS "Enable tests" ON)
 if (ENABLE_TESTS)
     enable_testing()
-    add_subdirectory(test)
+    add_subdirectory(test EXCLUDE_FROM_ALL)
 endif()
 
 option(ENABLE_BENCHMARK "Enable benchmark" ON)
 if (ENABLE_BENCHMARK)
-    add_subdirectory(benchmark)
+    add_subdirectory(benchmark EXCLUDE_FROM_ALL)
 endif()
 
 option(ENABLE_EXAMPLE "Enable example" ON)
 if (ENABLE_EXAMPLE)
-    add_subdirectory(example)
+    add_subdirectory(example EXCLUDE_FROM_ALL)
 endif()
 
 option(ENABLE_DOC "Enable documentation" ON)
@@ -52,3 +48,5 @@ set(GCC_FLAGS
     -Wcast-align -O3
 )
 # list(APPEND GCC_FLAGS -g3 -DNDEBUG)
+
+include(${CMAKE_SOURCE_DIR}/cmake/CPackConfig.cmake)
