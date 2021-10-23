@@ -36,8 +36,11 @@ endif()
 
 option(ENABLE_DOC "Enable documentation" ON)
 if (ENABLE_DOC)
-    include(${CMAKE_SOURCE_DIR}/cmake/doxygen.cmake)
+    include(${CMAKE_SOURCE_DIR}/thirdparty/doxygen.cmake)
 endif()
+
+include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/opencv.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/tesseract.cmake)
 
 set(GCC_FLAGS
     -Werror -Wall -Wduplicated-cond -Wformat=2 -Weffc++
@@ -47,6 +50,35 @@ set(GCC_FLAGS
     -Wunused -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -Wold-style-cast
     -Wcast-align -O3
 )
-# list(APPEND GCC_FLAGS -g3 -DNDEBUG)
+
+add_executable(${PROJECT_NAME}
+    ${CMAKE_SOURCE_DIR}/src/main.cc
+)
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${OpenCV_INCLUDE_DIRS}
+)
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+set_target_properties(${PROJECT_NAME}
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+    CXX_STANDARD 17
+    CXX_EXTENSIONS OFF
+    CXX_STANDARD_REQUIRED ON
+)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    if(MSVC)
+    else()
+        target_compile_options(${PROJECT_NAME} PRIVATE ${GCC_FLAGS})
+    endif()
+else()
+    if(MSVC)
+    else()
+        list(APPEND GCC_FLAGS -g3 -DNDEBUG)
+        target_compile_options(${PROJECT_NAME} PRIVATE ${GCC_FLAGS})
+    endif()
+endif()
 
 include(${CMAKE_SOURCE_DIR}/cmake/CPackConfig.cmake)

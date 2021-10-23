@@ -1,2 +1,1 @@
-include(FetchContent)
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/googlebenchmark.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/googlebenchmark.cmake)

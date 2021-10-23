@@ -1,5 +1,4 @@
-include(FetchContent)
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/googletest.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/googletest.cmake)
 
 add_executable(${PROJECT_NAME}_test
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cc
