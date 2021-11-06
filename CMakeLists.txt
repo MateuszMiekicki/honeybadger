@@ -42,14 +42,7 @@ endif()
 include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/opencv.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/tesseract.cmake)
 
-set(GCC_FLAGS
-    -Werror -Wall -Wduplicated-cond -Wformat=2 -Weffc++
-    -Wdouble-promotion -Wuseless-cast -Wnull-dereference
-    -Wlogical-op -Wduplicated-branches -Wmisleading-indentation
-    -Wsign-conversion -Wpedantic -Wconversion -Woverloaded-virtual
-    -Wunused -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -Wold-style-cast
-    -Wcast-align -O3
-)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/CompilationFlags.cmake)
 
 add_executable(${PROJECT_NAME}
     ${CMAKE_SOURCE_DIR}/src/main.cc
