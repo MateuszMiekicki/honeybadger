@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.18)
-project(ocr VERSION 0.1.0 LANGUAGES CXX)
+project(honeybadger VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 string(TIMESTAMP NOW "%Y-%m-%dT%H:%M:%SZ")
 set(CURRENT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}-${NOW}")
-message("version: ${CURRENT_VERSION}")
+message(STATUS "version: ${CURRENT_VERSION}")
 
 if (MSVC)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -36,7 +36,7 @@ endif ()
 
 option(ENABLE_DOC "Enable documentation" ON)
 if (ENABLE_DOC)
-    include(${CMAKE_SOURCE_DIR}/thirdparty/doxygen.cmake)
+    add_subdirectory(${CMAKE_SOURCE_DIR}/doc)
 endif ()
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/image/preprocessing)
