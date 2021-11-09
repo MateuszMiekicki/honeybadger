@@ -39,6 +39,6 @@ if (ENABLE_DOC)
     include(${CMAKE_SOURCE_DIR}/thirdparty/doxygen.cmake)
 endif ()
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/image)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/image/preprocessing)
 
 include(${CMAKE_SOURCE_DIR}/cmake/CPackConfig.cmake)

@@ -1,11 +1,11 @@
 include(${CMAKE_SOURCE_DIR}/thirdparty/opencv.cmake)
 
 add_library(color SHARED
-        ${CMAKE_SOURCE_DIR}/src/image/Color.cc
+        ${CMAKE_SOURCE_DIR}/src/image/preprocessing/Color.cc
         )
-add_library(honeybadger::image::color ALIAS color)
+add_library(honeybadger::image::preprocessing::color ALIAS color)
 target_include_directories(color PRIVATE
-        ${CMAKE_SOURCE_DIR}/include/honeybadger/image
+        ${CMAKE_SOURCE_DIR}/include/honeybadger/image/preprocessing
         ${OpenCV_INCLUDE_DIRS}
         )
 target_link_libraries(color ${OpenCV_LIBS})
