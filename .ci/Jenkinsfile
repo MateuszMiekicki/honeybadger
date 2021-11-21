@@ -16,31 +16,30 @@ pipeline {
         booleanParam name: 'DEPLOY', defaultValue: true, description: 'Deploy Artifacts?'
     }
 
-    stages {
-        stage('Example Stage') {
-            parallel {
-                stage('Stage 1') {
-                    steps {
-                        sh 'gcc --version'
-                    }
-                }
-
-                stage('Stage 2') {
-                    steps {
-                        sh 'cmake --version'
-                    }
-                }
-
-                stage('Stage 3') {
-                    steps {
-                        sh 'ls -a'
-                        sh 'echo stage 3 passed'
-                    }
-                }
-            }
-        }
-
-    }
+//     stages {
+//         stage('Example Stage') {
+//             parallel {
+//                 stage('Stage 1') {
+//                     steps {
+//                         sh 'gcc --version'
+//                     }
+//                 }
+//
+//                 stage('Stage 2') {
+//                     steps {
+//                         sh 'cmake --version'
+//                     }
+//                 }
+//
+//                 stage('Stage 3') {
+//                     steps {
+//                         sh 'ls -a'
+//                         sh 'echo stage 3 passed'
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
     stages {
         stage('Build') {
