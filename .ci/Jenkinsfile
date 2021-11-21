@@ -8,6 +8,7 @@ pipeline {
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
+        timeout(time: 10, unit: 'MINUTES')
     }
 
     parameters {
@@ -86,10 +87,10 @@ pipeline {
             echo "${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) (${GIT_COMMIT})"
         }
         success{
-
+            echo "success"
         }
         failure {
-
+            echo "failure"
         }
         cleanup {
             deleteDir()
