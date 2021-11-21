@@ -1,4 +1,6 @@
 # ocr
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMateuszMiekicki%2Focr.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMateuszMiekicki%2Focr?ref=badge_shield)
+
 
 ## Installation
 ```bash
@@ -24,3 +26,6 @@ The only two types that come to mind and I can see a use for them.
 
 ## License
 [BSD Zero Clause License](https://choosealicense.com/licenses/0bsd/)
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMateuszMiekicki%2Focr.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMateuszMiekicki%2Focr?ref=badge_large)
