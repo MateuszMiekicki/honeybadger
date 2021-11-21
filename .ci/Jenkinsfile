@@ -95,5 +95,10 @@ pipeline {
                 deleteDir()
             }
         }
+        // failure {
+        //     mail to: 'nxjzuignevhqestmte@sdvgeft.com',
+        //         subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+        //         body: "Something is wrong with ${env.BUILD_URL}"
+        // }
     }
 }
