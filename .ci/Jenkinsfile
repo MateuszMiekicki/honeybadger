@@ -84,7 +84,8 @@ pipeline {
 
     post {
         always {
-            echo "${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) (${GIT_COMMIT})"
+//             echo "${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) (${GIT_COMMIT})"
+            echo "always"
         }
         success{
             echo "success"

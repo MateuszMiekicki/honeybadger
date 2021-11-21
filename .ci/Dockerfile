@@ -1,5 +1,5 @@
 FROM gcc:latest
-
+USER root
 RUN apt-get -y update && \
     apt-get -y upgrade && \
     apt-get install -y cmake && \
