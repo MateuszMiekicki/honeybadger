@@ -1,100 +1,12 @@
 pipeline {
     agent {
-        dockerfile {
-            filename 'Dockerfile'
-            dir '.ci'
-        }
+        docker { image 'node:14-alpine' }
     }
-
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '10'))
-        timeout(time: 10, unit: 'MINUTES')
-    }
-
-    parameters {
-        booleanParam name: 'RUN_TESTS', defaultValue: true, description: 'Run Tests?'
-        booleanParam name: 'RUN_ANALYSIS', defaultValue: true, description: 'Run Static Code Analysis?'
-        booleanParam name: 'DEPLOY', defaultValue: true, description: 'Deploy Artifacts?'
-    }
-
-//     stages {
-//         stage('Example Stage') {
-//             parallel {
-//                 stage('Stage 1') {
-//                     steps {
-//                         sh 'gcc --version'
-//                     }
-//                 }
-//
-//                 stage('Stage 2') {
-//                     steps {
-//                         sh 'cmake --version'
-//                     }
-//                 }
-//
-//                 stage('Stage 3') {
-//                     steps {
-//                         sh 'ls -a'
-//                         sh 'echo stage 3 passed'
-//                     }
-//                 }
-//             }
-//         }
-//     }
-
     stages {
-        stage('Build') {
-            steps {
-                dir('build') {
-                    sh 'cmake .. -G Ninja -D CMAKE_BUILD_TYPE=Release'
-                    sh 'cmake --build . --config Release --clean-first --target all --parallel 14'
-                }
-            }
-        }
-
         stage('Test') {
-            when {
-                environment name: 'RUN_TESTS', value: 'true'
-            }
             steps {
-                dir('build') {
-                    sh 'ctest --parallel 14 --build-config Release --test-action test --output-on-failure --no-compress-output'
-                }
+                sh 'node --version'
             }
-        }
-
-        stage('Analyse') {
-            when {
-                environment name: 'RUN_ANALYSIS', value: 'true'
-            }
-            steps {
-                echo 'RUN_ANALYSIS'
-            }
-        }
-
-        stage('Deploy') {
-            when {
-                environment name: 'DEPLOY', value: 'true'
-            }
-            steps {
-                echo 'DEPLOY'
-            }
-        }
-    }
-
-    post {
-        always {
-//             echo "${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) (${GIT_COMMIT})"
-            echo "always"
-        }
-        success{
-            echo "success"
-        }
-        failure {
-            echo "failure"
-        }
-        cleanup {
-            deleteDir()
         }
     }
 }
