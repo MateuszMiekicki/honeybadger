@@ -7,11 +7,5 @@ message(STATUS "Leptonica include dirs: ${LEPTONICA_INCLUDE_DIRS}")
 message(STATUS "Leptonica libs: ${LEPTONICA_LIBRARY_DIRS}")
 if(NOT Tesseract_FOUND)
     # ToDo: Make it so that if it can't find tesseract, let it download from git.
-    # include(FetchContent)
-    # FetchContent_Declare(tesseract
-    #     GIT_REPOSITORY https://github.com/tesseract-ocr/tesseract.git
-    #     GIT_TAG 4.1.1
-    # )
-    # FetchContent_MakeAvailable(tesseract)
-    endif()
+endif()
 
