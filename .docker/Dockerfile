@@ -50,7 +50,10 @@ RUN git clone --depth 1 \
     cd $opencv_dir && \
     cmake -Bbuild -G $cmake_generator -DCMAKE_BUILD_TYPE=Release && \
     cmake --build build --target install --config Release
-
+#install sonar scanner
+COPY install-sonar-scanner.sh /install-sonar-scanner.sh
+RUN chmod +x install-sonar-scanner.sh
+RUN ./install-sonar-scanner.sh
 #Clear
 RUN rm -r $googletest_dir && \
     rm -r $google_benchmark_dir && \
