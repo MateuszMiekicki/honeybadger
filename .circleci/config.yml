@@ -7,15 +7,25 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Configuration"
+          name: "CMake configure"
           command: |
-            cmake --version
-            cmake -Bbuild
+            cmake -Bbuild -G Ninja
       - run:
-          name: "Say gcc"
-          command: g++ --version
-      - run: ninja --version
+          name: "CMake build"
+          command: |
+            cmake --build build
+  test:
+    docker:
+      - image: 0xd00d2bad/honeybadger_ci:latest
+    steps:
+      - checkout
+      - run: cd build
+      - run: ctest
+
 workflows:
-  say-hello-workflow:
+  build_and_test:
     jobs:
       - build
+      - test:
+          requires:
+            - build
