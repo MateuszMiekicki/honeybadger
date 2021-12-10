@@ -4,22 +4,23 @@ executors:
   honeybadger_ci:
     docker:
       - image: 0xd00d2bad/honeybadger_ci:latest
-    working_directory: .
+    working_directory: ~/honeybadger_ci
 
 jobs:
   checkout:
     executor: honeybadger_ci
+    working_directory: ~/honeybadger_ci
     steps:
       - checkout
-    working_directory: ~/ci
 
   build:
     executor: honeybadger_ci
-    working_directory: ~/ci
+    working_directory: ~/honeybadger_ci
     steps:
       - run:
           name: "Configure"
           command: |
+            ls -la
             cmake -Bbuild -G Ninja
       - run:
           name: "Build"
@@ -28,19 +29,19 @@ jobs:
 
   test:
     executor: honeybadger_ci
-    working_directory: ~/ci
+    working_directory: ~/honeybadger_ci
     steps:
-      - attach_workspace:
-          at: /honeybadger/build
       - run:
           name: "Unit test"
           command: |
+            ls -la
             cd build
             ctest
   deploy:
     executor: honeybadger_ci
-    working_directory: ~/ci
+    working_directory: ~/honeybadger_ci
     steps:
+      - run: ls -la
       - run: cmake --version
 
 workflows:
