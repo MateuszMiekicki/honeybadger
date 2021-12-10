@@ -19,8 +19,11 @@ jobs:
       - image: 0xd00d2bad/honeybadger_ci:latest
     steps:
       - checkout
-      - run: cd build
-      - run: ctest
+      - run:
+          name: "CTest"
+          command: |
+            cd build
+            ctest
 
 workflows:
   build_and_test:
