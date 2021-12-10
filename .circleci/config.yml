@@ -44,7 +44,7 @@ jobs:
       - run: cmake --version
 
 workflows:
-  ci/cd:
+  cicd:
     jobs:
       - build
       - test:
