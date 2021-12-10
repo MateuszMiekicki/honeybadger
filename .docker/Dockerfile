@@ -1,14 +1,14 @@
-FROM alpine:3.15
+FROM ubuntu:22.04
 
-RUN apk update && \
-    apk add cmake=3.21.3-r0 && \
-    #note: the latest ninja version is 1.9.0 as of this writing.
-    # The repository as of 3.15 does not have ninja.
-    apk add ninja && \ 
-    apk add g++=10.3.1_git20211027-r0 && \
-    apk add doxygen=1.9.2-r1 && \
-    apk add git && \
-    apk add linux-headers
+RUN apt-get update && \
+    apt-get install -y cmake && \
+    apt-get install -y ninja-build && \
+    apt-get install -y g++-11 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11 && \
+    apt-get install -y doxygen && \
+    apt-get install -y git && \
+    apt-get install -y wget && \
+    apt-get install -y unzip
 
 ARG cmake_generator=Ninja
 
@@ -24,8 +24,8 @@ RUN git clone --depth 1 \
     cmake --build build --target install
 
 #Downloading, building and installing google benchmark.
-#note: The google benchamrk tag will be up for change 
-# when the next version is released. 
+#note: The google benchamrk tag will be up for change
+# when the next version is released.
 # The reason is incompatibility of branchy names
 # in dependencies(google test moved from master to main).
 ARG google_benchmark_tag=main
@@ -54,7 +54,11 @@ RUN git clone --depth 1 \
 COPY install-sonar-scanner.sh /install-sonar-scanner.sh
 RUN chmod +x install-sonar-scanner.sh
 RUN ./install-sonar-scanner.sh
-#Clear
+
+#Clean
 RUN rm -r $googletest_dir && \
     rm -r $google_benchmark_dir && \
-    rm -r $opencv_dir
+    rm -r $opencv_dir && \
+    apt-get autoremove && \
+    apt-get autoclean && \
+    apt-get clean
