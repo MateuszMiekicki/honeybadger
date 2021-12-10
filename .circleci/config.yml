@@ -12,11 +12,16 @@ jobs:
     working_directory: ~/honeybadger_ci
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/honeybadger_ci
 
   build:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
     steps:
+      - checkout
+      - attach_workspace:
+          at: ~/honeybadger_ci
       - run:
           name: "Configure"
           command: |
@@ -26,21 +31,31 @@ jobs:
           name: "Build"
           command: |
             cmake --build build
-
+      - persist_to_workspace:
+          root: ~/honeybadger_ci
+          paths:
+            - ./build/*
   test:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
     steps:
+      - checkout
+      - attach_workspace:
+          at: ~/honeybadger_ci
       - run:
           name: "Unit test"
           command: |
             ls -la
             cd build
             ctest
+
   deploy:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
     steps:
+      - checkout
+      - attach_workspace:
+          at: ~/honeybadger_ci/build
       - run: ls -la
       - run: cmake --version
 
