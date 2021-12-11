@@ -20,18 +20,19 @@ endif (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE MATCHES "Release")
 
 option(ENABLE_TESTS "Enable tests" ON)
 if (ENABLE_TESTS)
+    include(CTest)
     enable_testing()
-    add_subdirectory(test EXCLUDE_FROM_ALL)
+    add_subdirectory(test)
 endif ()
 
 option(ENABLE_BENCHMARK "Enable benchmark" ON)
 if (ENABLE_BENCHMARK)
-    add_subdirectory(benchmark EXCLUDE_FROM_ALL)
+    add_subdirectory(benchmark)
 endif ()
 
 option(ENABLE_EXAMPLE "Enable example" ON)
 if (ENABLE_EXAMPLE)
-    add_subdirectory(example EXCLUDE_FROM_ALL)
+    add_subdirectory(example)
 endif ()
 
 option(ENABLE_DOC "Enable documentation" ON)
@@ -40,5 +41,6 @@ if (ENABLE_DOC)
 endif ()
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/image/preprocessing)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/coverage)
 
 include(${CMAKE_SOURCE_DIR}/cmake/CPackConfig.cmake)
