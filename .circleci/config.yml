@@ -7,14 +7,6 @@ executors:
     working_directory: ~/honeybadger_ci
 
 jobs:
-  checkout:
-    executor: honeybadger_ci
-    working_directory: ~/honeybadger_ci
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/honeybadger_ci
-
   build:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
@@ -25,8 +17,7 @@ jobs:
       - run:
           name: "Configure"
           command: |
-            ls -la
-            cmake -Bbuild -G Ninja
+            cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Release
       - run:
           name: "Build"
           command: |
@@ -44,26 +35,25 @@ jobs:
       - run:
           name: "Create test directory"
           command: |
-            ls -la
             cd build
             mkdir -p Test
       - run:
           name: "Execute Tests"
           command: |
-            ls -la
             cd build
-            ls -la
             ctest --no-compress-output -T Test || true
       - store_test_results:
-          path: build/Test
+          path: build/Testing
 
   deploy:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
     steps:
       - attach_workspace:
-          at: ~/honeybadger_ci/build
-      - run: ls -la
+          at: ~/honeybadger_ci
+      - run: |
+          cd build
+          ls -la
       - run: cmake --version
 
 workflows:
