@@ -34,25 +34,33 @@ jobs:
       - persist_to_workspace:
           root: ~/honeybadger_ci
           paths:
-            - ./build/*
+            - ./build
   test:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
     steps:
-      - checkout
       - attach_workspace:
-          at: ~/honeybadger_ci/build
+          at: ~/honeybadger_ci
       - run:
-          name: "Unit test"
+          name: "Create test directory"
           command: |
             ls -la
-#            ctest
+            cd build
+            mkdir -p Test
+      - run:
+          name: "Execute Tests"
+          command: |
+            ls -la
+            cd build
+            ls -la
+            ctest --no-compress-output -T Test || true
+      - store_test_results:
+          path: build/Test
 
   deploy:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
     steps:
-      - checkout
       - attach_workspace:
           at: ~/honeybadger_ci/build
       - run: ls -la
