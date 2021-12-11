@@ -41,13 +41,12 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/honeybadger_ci
+          at: ~/honeybadger_ci/build
       - run:
           name: "Unit test"
           command: |
             ls -la
-            cd build
-            ctest
+#            ctest
 
   deploy:
     executor: honeybadger_ci
