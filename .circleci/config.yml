@@ -63,6 +63,7 @@ jobs:
       - run:
           name: "Test"
           command: |
+            cd build
             ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - store_test_results:
           path: build/Testing
