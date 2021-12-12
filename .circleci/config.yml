@@ -6,6 +6,34 @@ executors:
       - image: 0xd00d2bad/honeybadger_ci:latest
 
 jobs:
+  static_analysis:
+    executor: honeybadger_ci
+    steps:
+      - checkout
+      - run:
+          name: "Configure"
+          command: |
+            cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Debug
+      - run:
+          name: "Build"
+          command: |
+            cmake --build build
+      - run:
+          name: "Run test"
+          command: |
+            cd build
+            ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
+      - run:
+          name: "Run coverage report generation"
+          command: |
+            sh ./generate_gcov.sh
+      - run:
+          name: "Run sonar scanner"
+          command: |
+            sonar-scanner -Dsonar.login=$SONAR_TOKEN
+      - store_test_results:
+          path: build/Testing
+
   build:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
@@ -27,37 +55,21 @@ jobs:
             - ./build
   test:
     executor: honeybadger_ci
-    working_directory: ~/honeybadger_ci_debug
+    working_directory: ~/honeybadger_ci
     steps:
       - checkout
       - attach_workspace:
-          at: ~/honeybadger_ci_debug
+          at: ~/honeybadger_ci
       - run:
-          name: "Build and test"
+          name: "Test"
           command: |
-            ls -la
-            ctest --build-and-test . build --build-generator Ninja --output-junit result --build-two-config --test-command ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
+            ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - store_test_results:
           path: build/Testing
       - persist_to_workspace:
-          root: ~/honeybadger_ci_debug
+          root: ~/honeybadger_ci
           paths:
-            - .
-
-  static_analysis:
-    executor: honeybadger_ci
-    working_directory: ~/honeybadger_ci_debug
-    steps:
-      - attach_workspace:
-          at: ~/honeybadger_ci_debug
-      - run:
-          name: "gcov"
-          command: |
-            - sh ./generate_gcov.sh
-      - run:
-          name: "Run sonar scanner"
-          command: |
-            sonar-scanner -Dsonar.login=$SONAR_TOKEN
+            - build
 
   deploy:
     executor: honeybadger_ci
@@ -66,14 +78,17 @@ jobs:
       - attach_workspace:
           at: ~/honeybadger_ci
       - run: |
+          ls -la
           cd build
           ls -la
-      - run: cmake --version
 
 workflows:
   cicd:
     jobs:
-      - build
+      - static_analysis
+      - build:
+          requires:
+            - static_analysis
       - test:
           requires:
             - build
