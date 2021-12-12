@@ -28,22 +28,40 @@ jobs:
             - ./build
   test:
     executor: honeybadger_ci
-    working_directory: ~/honeybadger_ci
+    working_directory: ~/honeybadger_ci_test
     steps:
       - attach_workspace:
-          at: ~/honeybadger_ci
+          at: ~/honeybadger_ci_test
       - run:
-          name: "Create test directory"
+          name: "Build and test"
           command: |
-            cd build
-            mkdir -p Test
-      - run:
-          name: "Execute Tests"
-          command: |
-            cd build
-            ctest --no-compress-output -T Test || true
+            ctest --build-and-test . build --build-generator Ninja  --output-junit result --test-command ctest --no-compress-output -T Test --output-junit Testing/results.xml
       - store_test_results:
           path: build/Testing
+      - persist_to_workspace:
+          root: ~/honeybadger_ci_test
+          paths:
+            - .
+
+  static_analysis:
+    executor: honeybadger_ci
+    working_directory: ~/honeybadger_ci_test
+    steps:
+      - attach_workspace:
+          at: ~/honeybadger_ci_test
+      - run:
+          name: "Build"
+          command: |
+            ls -la
+            ctest --build-and-test . build --build-generator Ninja  --output-junit result --test-command ctest --no-compress-output -T Test --output-junit Testing/results.xml
+      - run:
+          name: "gcov"
+          command: |
+            - sh ./generate_gcov.sh
+      - run:
+          name: "Run sonar scanner"
+          command: |
+            sonar-scanner -Dsonar.login=$SONAR_TOKEN
 
   deploy:
     executor: honeybadger_ci

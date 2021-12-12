@@ -1,14 +1,21 @@
 FROM ubuntu:22.04
 
 RUN apt-get update && \
-    apt-get install -y cmake && \
     apt-get install -y ninja-build && \
     apt-get install -y g++-11 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11 && \
+    apt-get install -y gcc-11 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 11 && \
+    update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-11 11 && \
     apt-get install -y doxygen && \
     apt-get install -y git && \
     apt-get install -y wget && \
     apt-get install -y unzip
+
+#install CMake
+COPY install-cmake.sh /install-cmake.sh
+RUN chmod +x install-cmake.sh
+RUN ./install-cmake.sh
 
 ARG cmake_generator=Ninja
 
@@ -41,15 +48,16 @@ RUN git clone --depth 1 \
     cmake --build build --target install --config Release
 
 #Downloading, building and installing opencv.
-ARG opencv_test_tag=4.5.4
-ARG opencv_test_repo=https://github.com/opencv/opencv.git
+ARG opencv_tag=4.5.4
+ARG opencv_repo=https://github.com/opencv/opencv.git
 ARG opencv_dir=opencv
 RUN git clone --depth 1 \
-    --branch $opencv_test_tag \
-    $opencv_test_repo && \
+    --branch $opencv_tag \
+    $opencv_repo && \
     cd $opencv_dir && \
     cmake -Bbuild -G $cmake_generator -DCMAKE_BUILD_TYPE=Release && \
     cmake --build build --target install --config Release
+
 #install sonar scanner
 COPY install-sonar-scanner.sh /install-sonar-scanner.sh
 RUN chmod +x install-sonar-scanner.sh

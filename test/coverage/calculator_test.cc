@@ -27,5 +27,5 @@ TEST (calculator, mp) {
     EXPECT_EQ (cal.multiple(0,9), 0);
     EXPECT_EQ (cal.multiple(-1,9), -9);
     EXPECT_EQ (cal.multiple(9,-1), -9);
-    EXPECT_EQ (cal.multiple(-9,-1), 9);
+    EXPECT_EQ (cal.multiple(-9,-1), -9);
 }

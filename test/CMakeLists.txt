@@ -31,6 +31,13 @@ option(COVERAGE "Tests with coverage" ON)
 if (COVERAGE)
     list(APPEND GCC_FLAGS --coverage -fprofile-arcs -ftest-coverage -fprofile-abs-path -g3 -O0)
     target_link_libraries(honeybadger_test PRIVATE gcov)
+    find_program(GCOV_PATH gcov)
+    if (NOT GCOV_PATH)
+        message(FATAL_ERROR "gcov not found! Aborting...")
+    endif ()
+    add_custom_target(gcov_report
+            COMMAND ${CMAKE_COMMAND} -P path_to_script
+            )
 else ()
     list(APPEND GCC_FLAGS -O3)
 endif ()
