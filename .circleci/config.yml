@@ -4,7 +4,6 @@ executors:
   honeybadger_ci:
     docker:
       - image: 0xd00d2bad/honeybadger_ci:latest
-    working_directory: ~/honeybadger_ci
 
 jobs:
   build:
@@ -28,32 +27,29 @@ jobs:
             - ./build
   test:
     executor: honeybadger_ci
-    working_directory: ~/honeybadger_ci_test
+    working_directory: ~/honeybadger_ci_debug
     steps:
+      - checkout
       - attach_workspace:
-          at: ~/honeybadger_ci_test
+          at: ~/honeybadger_ci_debug
       - run:
           name: "Build and test"
           command: |
-            ctest --build-and-test . build --build-generator Ninja  --output-junit result --test-command ctest --no-compress-output -T Test --output-junit Testing/results.xml
+            ls -la
+            ctest --build-and-test . build --build-generator Ninja --output-junit result --build-two-config --test-command ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - store_test_results:
           path: build/Testing
       - persist_to_workspace:
-          root: ~/honeybadger_ci_test
+          root: ~/honeybadger_ci_debug
           paths:
             - .
 
   static_analysis:
     executor: honeybadger_ci
-    working_directory: ~/honeybadger_ci_test
+    working_directory: ~/honeybadger_ci_debug
     steps:
       - attach_workspace:
-          at: ~/honeybadger_ci_test
-      - run:
-          name: "Build"
-          command: |
-            ls -la
-            ctest --build-and-test . build --build-generator Ninja  --output-junit result --test-command ctest --no-compress-output -T Test --output-junit Testing/results.xml
+          at: ~/honeybadger_ci_debug
       - run:
           name: "gcov"
           command: |
