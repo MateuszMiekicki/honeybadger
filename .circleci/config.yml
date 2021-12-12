@@ -33,6 +33,8 @@ jobs:
             sonar-scanner -Dsonar.login=$SONAR_TOKEN
       - store_test_results:
           path: build/Testing
+      - store_artifacts:
+          path: build/Testing
 
   build:
     executor: honeybadger_ci
@@ -66,6 +68,8 @@ jobs:
             cd build
             ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - store_test_results:
+          path: build/Testing
+      - store_artifacts:
           path: build/Testing
       - persist_to_workspace:
           root: ~/honeybadger_ci
