@@ -4,9 +4,38 @@ executors:
   honeybadger_ci:
     docker:
       - image: 0xd00d2bad/honeybadger_ci:latest
-    working_directory: ~/honeybadger_ci
 
 jobs:
+  static_analysis:
+    executor: honeybadger_ci
+    steps:
+      - checkout
+      - run:
+          name: "Configure"
+          command: |
+            cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Debug
+      - run:
+          name: "Build"
+          command: |
+            cmake --build build
+      - run:
+          name: "Run test"
+          command: |
+            cd build
+            ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
+      - run:
+          name: "Run coverage report generation"
+          command: |
+            sh ./generate_gcov.sh
+      - run:
+          name: "Run sonar scanner"
+          command: |
+            sonar-scanner -Dsonar.login=$SONAR_TOKEN
+      - store_test_results:
+          path: build/Testing
+      - store_artifacts:
+          path: build/Testing
+
   build:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
@@ -30,20 +59,22 @@ jobs:
     executor: honeybadger_ci
     working_directory: ~/honeybadger_ci
     steps:
+      - checkout
       - attach_workspace:
           at: ~/honeybadger_ci
       - run:
-          name: "Create test directory"
+          name: "Test"
           command: |
             cd build
-            mkdir -p Test
-      - run:
-          name: "Execute Tests"
-          command: |
-            cd build
-            ctest --no-compress-output -T Test || true
+            ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - store_test_results:
           path: build/Testing
+      - store_artifacts:
+          path: build/Testing
+      - persist_to_workspace:
+          root: ~/honeybadger_ci
+          paths:
+            - build
 
   deploy:
     executor: honeybadger_ci
@@ -52,14 +83,16 @@ jobs:
       - attach_workspace:
           at: ~/honeybadger_ci
       - run: |
+          ls -la
           cd build
           ls -la
-      - run: cmake --version
-
 workflows:
   cicd:
     jobs:
-      - build
+      - static_analysis
+      - build:
+          requires:
+            - static_analysis
       - test:
           requires:
             - build
