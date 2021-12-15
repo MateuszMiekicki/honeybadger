@@ -17,7 +17,7 @@ class Color
     /// @param source matrix to convert.
     /// @note No need to care about the source of the image. The method will
     /// internally convert it to grayscale.
-    static cv::Mat binarization(const cv::Mat &source);
+    static cv::Mat thresholding(const cv::Mat &source);
 };
 } // namespace honeybadger::image::preprocessing
 

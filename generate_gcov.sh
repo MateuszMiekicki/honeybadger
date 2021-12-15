@@ -1,5 +1,6 @@
 #!/bin/bash
-cd build
+cd build || exit
 mkdir -p gcov_reports
-cd gcov_reports
-find ../test/CMakeFiles/honeybadger_test.dir/coverage -name '*.*.gcno' -exec gcov "{}" \;
+cd gcov_reports || exit
+find ../test/CMakeFiles/honeybadger_test.dir/image/preprocessing -name '*.*.gcno' -exec gcov -b -l -p -c "{}" \;
+find ../test/CMakeFiles/honeybadger_test.dir/image/preprocessing -name '*.*.gcno' -exec echo "{}" \;

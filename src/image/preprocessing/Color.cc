@@ -10,9 +10,8 @@ cv::Mat Color::convertToGrayscale(const cv::Mat &source)
     return grayscale;
 }
 
-cv::Mat Color::binarization(const cv::Mat &source)
+cv::Mat Color::thresholding(const cv::Mat &source)
 {
-
     const auto threshold{127};
     const auto upperBound{255};
     auto thresholdOutput = cv::Mat();

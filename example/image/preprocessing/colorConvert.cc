@@ -12,6 +12,6 @@ int main()
     {
         std::string png = "img.png";
         cv::Mat imgpng = cv::imread(png);
-        const auto binarization = Color::binarization(imgpng);
+        const auto binarization = Color::thresholding(imgpng);
     }
 }
