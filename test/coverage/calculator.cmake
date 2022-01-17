@@ -1,1 +1,0 @@
-set(calc_path ${CMAKE_CURRENT_SOURCE_DIR}/coverage/calculator_test.cc)

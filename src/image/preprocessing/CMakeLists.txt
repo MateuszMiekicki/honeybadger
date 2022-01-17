@@ -27,22 +27,12 @@ include(${CMAKE_SOURCE_DIR}/cmake/CompilationFlags.cmake)
 if (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (MSVC)
     else ()
-<<<<<<< HEAD
         #        target_compile_options(${LIB_NAME} PRIVATE ${GCC_FLAGS})
-=======
-        list(APPEND GCC_FLAGS -O3 -DNDEBUG)
-        target_compile_options(color PRIVATE ${GCC_FLAGS})
->>>>>>> ci_test
     endif ()
 else ()
     if (MSVC)
     else ()
-<<<<<<< HEAD
         #        list(APPEND GCC_FLAGS -g3 -DNDEBUG)
         #        target_compile_options(${LIB_NAME} PRIVATE ${GCC_FLAGS})
-=======
-        list(APPEND GCC_FLAGS -g3)
-        target_compile_options(color PRIVATE ${GCC_FLAGS})
->>>>>>> ci_test
     endif ()
 endif ()
