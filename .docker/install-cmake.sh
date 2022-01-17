@@ -10,4 +10,8 @@ wget https://github.com/Kitware/CMake/releases/download/v${VERSION}.${BUILD}/cma
 tar -xzvf /opt/cmake.tar.gz -C opt/
 rm /opt/cmake.tar.gz
 
+<<<<<<< HEAD
 ln -s /opt/cmake-${VERSION}.${BUILD}-linux-x86_64/bin/* /usr/bin/
+=======
+ln -s /opt/cmake-${VERSION}.${BUILD}-linux-x86_64/bin/* /usr/bin/
+>>>>>>> ci_test

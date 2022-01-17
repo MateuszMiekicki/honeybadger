@@ -86,6 +86,10 @@ jobs:
           ls -la
           cd build
           ls -la
+<<<<<<< HEAD
+=======
+
+>>>>>>> ci_test
 workflows:
   cicd:
     jobs:
