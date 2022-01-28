@@ -113,28 +113,48 @@ jobs:
 workflows:
   ci-cd:
     jobs:
-      - static_analysis
+      - static_analysis:
+          filters:
+            branches:
+              only:
+                - development
       - build:
           matrix:
             parameters:
               os: [ linux-docker ]
+          filters:
+              branches:
+                only:
+                  - development
           requires:
             - static_analysis
       - test:
           matrix:
             parameters:
               os: [ linux-docker ]
+          filters:
+            branches:
+              only:
+                - development
           requires:
             - build
       - delivery:
           matrix:
             parameters:
               os: [ linux-docker ]
+          filters:
+            branches:
+              only:
+                - development
           requires:
             - test
       - deploy:
           matrix:
             parameters:
               os: [ linux-docker ]
+          filters:
+            branches:
+              only:
+                - development
           requires:
             - test
