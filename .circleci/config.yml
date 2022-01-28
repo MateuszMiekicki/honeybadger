@@ -1,7 +1,7 @@
 version: 2.1
 
 executors:
-  honeybadger_ci:
+  linux-docker:
     docker:
       - image: 0xd00d2bad/honeybadger_ci:latest
 
@@ -37,7 +37,10 @@ jobs:
           path: build/Testing
 
   build:
-    executor: honeybadger_ci
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
     working_directory: ~/honeybadger_ci
     steps:
       - checkout
@@ -56,7 +59,10 @@ jobs:
           paths:
             - ./build
   test:
-    executor: honeybadger_ci
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
     working_directory: ~/honeybadger_ci
     steps:
       - checkout
@@ -76,8 +82,11 @@ jobs:
           paths:
             - build
 
-  deploy:
-    executor: honeybadger_ci
+  delivery:
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
     working_directory: ~/honeybadger_ci
     steps:
       - attach_workspace:
@@ -86,16 +95,46 @@ jobs:
           ls -la
           cd build
           ls -la
+
+  deploy:
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
+    working_directory: ~/honeybadger_ci
+    steps:
+      - attach_workspace:
+          at: ~/honeybadger_ci
+      - run: |
+          ls -la
+          cd build
+          ls -la
+
 workflows:
-  cicd:
+  ci-cd:
     jobs:
       - static_analysis
       - build:
+          matrix:
+            parameters:
+              os: [ linux-docker ]
           requires:
             - static_analysis
       - test:
+          matrix:
+            parameters:
+              os: [ linux-docker ]
           requires:
             - build
+      - delivery:
+          matrix:
+            parameters:
+              os: [ linux-docker ]
+          requires:
+            - test
       - deploy:
+          matrix:
+            parameters:
+              os: [ linux-docker ]
           requires:
             - test
