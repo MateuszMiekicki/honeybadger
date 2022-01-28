@@ -116,16 +116,16 @@ workflows:
       - static_analysis:
           filters:
             branches:
-              only:
-                - master
+              ignore:
+                - gh-pages
       - build:
           matrix:
             parameters:
               os: [ linux-docker ]
           filters:
               branches:
-                only:
-                  - master
+                ignore:
+                  - gh-pages
           requires:
             - static_analysis
       - test:
@@ -134,8 +134,8 @@ workflows:
               os: [ linux-docker ]
           filters:
             branches:
-              only:
-                - master
+              ignore:
+                - gh-pages
           requires:
             - build
       - delivery:
