@@ -1,17 +1,16 @@
 #include <honeybadger/image/preprocessing/Color.hh>
-#include <opencv2/opencv.hpp>
 
-int main()
+int main(int argc, char *argv[])
 {
-    using namespace honeybadger::image::preprocessing;
+    if (argc == 2)
     {
-        std::string jpg = "img.jpg";
-        cv::Mat imgjpg = cv::imread(jpg);
-        const auto grayscale = Color::convertToGrayscale(imgjpg);
-    }
-    {
-        std::string png = "img.png";
-        cv::Mat imgpng = cv::imread(png);
-        const auto binarization = Color::thresholding(imgpng);
+        using namespace honeybadger::image::preprocessing;
+        const cv::Mat img = cv::imread(argv[1]);
+        imshow("img", img);
+        const auto grayscale = Color::convertToGrayscale(img);
+        imshow("grayscale", grayscale);
+        const auto binarization = Color::thresholding(img);
+        imshow("binarization", binarization);
+        cv::waitKey(0);
     }
 }
