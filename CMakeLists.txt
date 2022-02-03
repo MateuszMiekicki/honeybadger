@@ -39,7 +39,7 @@ endif ()
 
 option(ENABLE_DOC "Enable documentation" ON)
 if (ENABLE_DOC)
-    add_subdirectory(${CMAKE_SOURCE_DIR}/doc)
+    add_subdirectory(${CMAKE_SOURCE_DIR}/docs)
 endif ()
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/image/preprocessing)
