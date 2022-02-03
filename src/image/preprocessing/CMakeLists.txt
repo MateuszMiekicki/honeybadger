@@ -2,7 +2,7 @@ include(${CMAKE_SOURCE_DIR}/thirdparty/opencv.cmake)
 
 set(LIB_NAME preprocessing)
 aux_source_directory(. SOURCE)
-add_library(${LIB_NAME} SHARED
+add_library(${LIB_NAME}
         ${SOURCE}
         )
 add_library(honeybadger::image::preprocessing::color ALIAS ${LIB_NAME})
