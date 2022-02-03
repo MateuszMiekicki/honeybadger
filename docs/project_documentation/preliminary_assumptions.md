@@ -6,7 +6,7 @@ Another objective that is related to the first one is to save money.
 ## System context
 The final product will consist of three independent components. Each component will be completely replaceable.
 1. **SDK** - a set of methods allowing full separation from other modules. This solution is suitable for integration with already existing software.
-2. **cloud computing** - with the idea that "there can be a lot of it", the processing of large packages will be done in the cloud (I'm far from specifying anything at this stage, but I'm heading towards AWS and CUDA). Of course this will be replaceable.
+2. **cloud computing** - with the idea that "there can be a lot of it", the processing of large packages will be done in the cloud (I'm far from specifying anything at this stage, but I'm heading towards GCP and CUDA). Of course this will be replaceable.
 3. **GUI** - client so that the average user can use a ready-made solution. 
 
 The solution will be as cross-platform as possible. Definitely based on x86 architecture. So full access from Windows, Linux and older Macs. 
@@ -41,7 +41,7 @@ The connection itself will be based on TLS. Data will be asymmetrically encrypte
   - [CUDA 11.y](https://developer.nvidia.com/)
 + CMake 3.18+
 + [Doxygen](https://github.com/doxygen/doxygen)
-+ [Jenkins](https://www.jenkins.io/)
++ [CircleCI](https://circleci.com/)
   - [sonarqube](https://www.sonarqube.org/)
 ## Restrictions
 ## Glossary
