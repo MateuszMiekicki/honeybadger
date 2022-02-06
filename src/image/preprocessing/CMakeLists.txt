@@ -23,7 +23,7 @@ set_target_properties(${LIB_NAME}
         CXX_STANDARD_REQUIRED ON
         )
 
-include(${CMAKE_SOURCE_DIR}/cmake/CompilationFlags.cmake)
+include(CompilationFlags)
 if (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (MSVC)
     else ()
