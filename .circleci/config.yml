@@ -27,7 +27,6 @@ jobs:
           name: "Run coverage report generation"
           command: |
             sh ./generate_coverage_report.sh
-            sh <(curl -s https://codecov.io/bash) -f build/Testing/coverage.info
       - run:
           name: "Run sonar scanner"
           command: |
