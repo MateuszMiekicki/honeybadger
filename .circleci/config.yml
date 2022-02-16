@@ -26,7 +26,7 @@ jobs:
       - run:
           name: "Run coverage report generation"
           command: |
-            sh ./generate_gcov.sh
+            sh ./generate_coverage_report.sh
       - run:
           name: "Run sonar scanner"
           command: |
