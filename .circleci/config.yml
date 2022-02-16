@@ -21,8 +21,7 @@ jobs:
       - run:
           name: "Run test"
           command: |
-            cd build
-            ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
+            ctest --test-dir build --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - run:
           name: "Run coverage report generation"
           command: |
