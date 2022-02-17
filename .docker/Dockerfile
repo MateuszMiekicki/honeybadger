@@ -1,4 +1,5 @@
 FROM ubuntu:22.04
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y ninja-build && \
@@ -11,7 +12,12 @@ RUN apt-get update && \
     apt-get install -y git && \
     apt-get install -y wget && \
     apt-get install -y unzip && \
-    apt-get install -y lcov
+    apt-get install -y lcov && \
+    apt-get install -y python3 pip && \
+    apt-get install -y ruby-dev
+
+RUN pip install gcovr
+RUN gem install coveralls-lcov
 
 #install CMake
 COPY install-cmake.sh /install-cmake.sh

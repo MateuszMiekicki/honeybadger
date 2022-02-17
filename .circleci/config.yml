@@ -27,10 +27,15 @@ jobs:
           command: |
             lcov --capture --directory build/src --output-file build/Testing/coverage.info --rc lcov_branch_coverage=1
             lcov --remove build/Testing/coverage.info '/usr/*' --output-file build/Testing/coverage.info --rc lcov_branch_coverage=1 # filter system-files
+            coveralls-lcov --repo-token $COVERALLS_TOKEN build/Testing/coverage.info
+      - run:
+          name: "Run gcovr coverage report generation"
+          command: |
+            gcovr --config gcovr.properties
       - run:
           name: "Run sonar scanner"
           command: |
-            sonar-scanner -Dsonar.login=$SONAR_TOKEN
+            sonar-scanner -Dproject.settings=.cicd/sonar-project.properties -Dsonar.login=$SONAR_TOKEN
       - store_test_results:
           path: build/Testing
       - store_artifacts:
