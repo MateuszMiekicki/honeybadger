@@ -25,8 +25,8 @@ jobs:
       - run:
           name: "Run lcov coverage report generation"
           command: |
-            sh lcov --capture --directory build/src --output-file build/Testing/coverage.info --rc lcov_branch_coverage=1
-            sh lcov --remove build/Testing/coverage.info '/usr/*' --output-file build/Testing/coverage.info --rc lcov_branch_coverage=1 # filter system-files
+            lcov --capture --directory build/src --output-file build/Testing/coverage.info --rc lcov_branch_coverage=1
+            lcov --remove build/Testing/coverage.info '/usr/*' --output-file build/Testing/coverage.info --rc lcov_branch_coverage=1 # filter system-files
       - run:
           name: "Run sonar scanner"
           command: |
