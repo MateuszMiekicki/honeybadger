@@ -2,6 +2,7 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMateuszMiekicki%2Focr.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMateuszMiekicki%2Focr?ref=badge_shield)
 [![CircleCI](https://circleci.com/gh/MateuszMiekicki/honeybadger/tree/master.svg?style=svg)](https://circleci.com/gh/MateuszMiekicki/honeybadger/tree/master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MateuszMiekicki_honeybadger&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=MateuszMiekicki_honeybadger)
+[![Coverage Status](https://coveralls.io/repos/github/MateuszMiekicki/honeybadger/badge.svg)](https://coveralls.io/github/MateuszMiekicki/honeybadger)
 ## Installation
 ```bash
 mkdir build
