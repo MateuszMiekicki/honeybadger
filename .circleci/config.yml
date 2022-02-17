@@ -33,7 +33,6 @@ jobs:
           command: |
             gcovr --filter src/ --sonarqube build/Testing/coverage.xml --branches
 #           gcovr --config .cicd/gcovr.properties
-
       - run:
           name: "Run sonar scanner"
           command: |
