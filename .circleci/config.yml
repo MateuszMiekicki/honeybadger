@@ -31,7 +31,7 @@ jobs:
       - run:
           name: "Run gcovr coverage report generation"
           command: |
-            gcovr --config gcovr.properties
+            gcovr --config .cicd/gcovr.properties
       - run:
           name: "Run sonar scanner"
           command: |
