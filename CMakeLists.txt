@@ -24,6 +24,7 @@ endif (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE MATCHES "Release")
 
 option(ENABLE_TESTS "Enable tests" ON)
 if (ENABLE_TESTS)
+    include(CTest)
     enable_testing()
     add_subdirectory(test)
 endif ()
@@ -43,6 +44,6 @@ if (ENABLE_DOC)
     add_subdirectory(${CMAKE_SOURCE_DIR}/docs)
 endif ()
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/image/preprocessing)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src)
 
 include(CPackConfig)
