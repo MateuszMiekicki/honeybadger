@@ -98,14 +98,16 @@ jobs:
           name: Install and configure git
           command: |
             apk add git
+            git clone -b gh-pages https://github.com/MateuszMiekicki/honeybadger.git
+            cd honeybadger
             git config user.email ""
             git config user.name "ci-build"
+            ls -l
       - run:
           name: Delete old docs and move new
           command: |
-            git clone -b gh-pages https://github.com/MateuszMiekicki/honeybadger.git
             cd honeybadger
-            rm -d -r html
+            rm -irf html
             ls -l
 
   delivery:
