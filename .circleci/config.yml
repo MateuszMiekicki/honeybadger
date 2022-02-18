@@ -102,13 +102,19 @@ jobs:
             cd honeybadger
             git config user.email ""
             git config user.name "ci-build"
-            ls -l
       - run:
           name: Delete old docs and move new
           command: |
             cd honeybadger
             rm -irf html
-            ls -l
+            mv ../build/docs/html .
+      - run:
+          name: Deploy docs
+          command: |
+            cd honeybadger
+            git add -fA
+            git commit --allow-empty -m "<< pipeline.number >>"
+            git push https://$GITHUB_DEPLOY_TOKEN@github.com/MateuszMiekicki/honeybadger.git -f origin gh-pages
 
   delivery:
     parameters:
