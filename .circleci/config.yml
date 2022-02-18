@@ -198,4 +198,4 @@ workflows:
               ignore:
                 - gh-pages
           requires:
-            - build
+            - test
