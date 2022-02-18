@@ -87,6 +87,26 @@ jobs:
           root: ~/honeybadger_ci
           paths:
             - build
+  deploy_docs:
+    docker:
+      - image: alpine:latest
+    working_directory: ~/honeybadger_ci
+    steps:
+      - attach_workspace:
+          at: ~/honeybadger_ci
+      - run:
+          name: Install and configure git
+          command: |
+            apk add git
+            git config user.email ""
+            git config user.name "ci-build"
+      - run:
+          name: Delete old docs and move new
+          command: |
+            git clone -b gh-pages https://github.com/MateuszMiekicki/honeybadger.git
+            cd honeybadger
+            rm -d -r html
+            ls -l
 
   delivery:
     parameters:
@@ -129,9 +149,9 @@ workflows:
             parameters:
               os: [ linux-docker ]
           filters:
-              branches:
-                ignore:
-                  - gh-pages
+            branches:
+              ignore:
+                - gh-pages
           requires:
             - static_analysis
       - test:
@@ -164,3 +184,10 @@ workflows:
                 - master
           requires:
             - test
+      - deploy_docs:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+          requires:
+            - build
