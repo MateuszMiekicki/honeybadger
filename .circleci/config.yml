@@ -114,7 +114,7 @@ jobs:
             cd honeybadger
             git add -fA
             git commit --allow-empty -m "<< pipeline.number >>"
-            git push https://$GITHUB_DEPLOY_TOKEN@github.com/MateuszMiekicki/honeybadger.git -f origin gh-pages
+            git push https://$GITHUB_DEPLOY_TOKEN@github.com/MateuszMiekicki/honeybadger.git -f
 
   delivery:
     parameters:
