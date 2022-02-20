@@ -1,18 +1,17 @@
-project(${CMAKE_PROJECT_NAME}_test LANGUAGES CXX)
+project(test_integration_${CMAKE_PROJECT_NAME} LANGUAGES CXX)
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/googletest.cmake)
-
-include(${CMAKE_CURRENT_SOURCE_DIR}/image/preprocessing/preprocessing_test.cmake)
+include(image/preprocessing/preprocessing_test.cmake)
 
 add_executable(${PROJECT_NAME}
-        ${CMAKE_CURRENT_SOURCE_DIR}/main.cc
         ${PREPROCESSING_SOURCE_TEST_FILE}
         )
 message(${PREPROCESSING_SOURCE_TEST_FILE})
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
-        gtest
-        gmock
+        GTest::gtest
+        GTest::gtest_main
+        GTest::gmock
+        GTest::gmock_main
         honeybadger::image::preprocessing::color
         )
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
