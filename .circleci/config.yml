@@ -21,6 +21,7 @@ jobs:
       - run:
           name: "Run test"
           command: |
+            apt-get install -y tree
             tree build/bin
             ctest --test-dir build --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - run:
