@@ -64,6 +64,7 @@ jobs:
           root: ~/honeybadger_ci
           paths:
             - ./build
+
   test:
     parameters:
       os:
@@ -87,6 +88,7 @@ jobs:
           root: ~/honeybadger_ci
           paths:
             - build
+
   deploy_docs:
     docker:
       - image: alpine:latest
@@ -113,7 +115,7 @@ jobs:
           command: |
             cd honeybadger
             git add -fA
-            git commit --allow-empty -m "<< pipeline.number >>"
+            git commit --allow-empty -m "auto commit [ci skip]<< pipeline.number >>"
             git push https://$GITHUB_DEPLOY_TOKEN@github.com/MateuszMiekicki/honeybadger.git -f
 
   delivery:
