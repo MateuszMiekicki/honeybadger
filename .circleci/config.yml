@@ -194,7 +194,7 @@ workflows:
       - deploy_docs:
           filters:
             branches:
-              ignore:
-                - gh-pages
+              only:
+                - master
           requires:
             - test
