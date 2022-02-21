@@ -77,7 +77,7 @@ jobs:
       - attach_workspace:
           at: ~/honeybadger_ci
       - run:
-          name: "Test"
+          name: "Run tests"
           command: |
             ctest --test-dir build --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - store_test_results:
