@@ -4,6 +4,7 @@ executors:
   linux-docker:
     docker:
       - image: 0xd00d2bad/honeybadger_ci:latest
+    parallelism: 4
 
 jobs:
   static_analysis:
