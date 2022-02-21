@@ -11,14 +11,13 @@ class PreprocessingColorTest : public testing::Test
   protected:
     static void SetUpTestSuite()
     {
-        source_ =
-            cv::imread("test_data\\image\\preprocessing\\test-pattern.png",
+        source_ = cv::imread("test_data/image/preprocessing/test-pattern.png",
+                             cv::IMREAD_UNCHANGED);
+        expectedGrayscale_ =
+            cv::imread("test_data/image/preprocessing/expected/grayscale.png",
                        cv::IMREAD_UNCHANGED);
-        expectedGrayscale_ = cv::imread(
-            "test_data\\image\\preprocessing\\expected\\grayscale.png",
-            cv::IMREAD_UNCHANGED);
         expectedThresholding_ = cv::imread(
-            "test_data\\image\\preprocessing\\expected\\thresholding.png",
+            "test_data/image/preprocessing/expected/thresholding.png",
             cv::IMREAD_UNCHANGED);
     }
 
