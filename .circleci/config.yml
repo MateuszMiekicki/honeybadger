@@ -69,6 +69,7 @@ jobs:
       os:
         type: executor
     executor: << parameters.os >>
+    parallelism: 4
     working_directory: ~/honeybadger_ci
     steps:
       - checkout
