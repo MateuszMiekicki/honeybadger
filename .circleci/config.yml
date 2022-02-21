@@ -21,10 +21,7 @@ jobs:
       - run:
           name: "Run test"
           command: |
-            apt-get update -y
-            apt-get install -y tree
-            tree build/bin
-            ctest --test-dir build --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
+            ctest --test-dir build --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure -V
       - run:
           name: "Run lcov coverage report generation"
           command: |
@@ -35,7 +32,6 @@ jobs:
           name: "Run gcovr coverage report generation"
           command: |
             gcovr --filter src/ --sonarqube build/Testing/coverage.xml --branches
-      #            gcovr --filter src/ --sonarqube build/Testing/coverage.xml --branches
       - run:
           name: "Run sonar scanner"
           command: |
@@ -80,8 +76,7 @@ jobs:
       - run:
           name: "Test"
           command: |
-            cd build
-            ctest --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
+            ctest --test-dir build --no-compress-output -T Test --output-junit Testing/results.xml --rerun-failed --output-on-failure
       - store_test_results:
           path: build/Testing
       - store_artifacts:

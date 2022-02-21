@@ -1,18 +1,17 @@
 project(test_integration_${CMAKE_PROJECT_NAME} LANGUAGES CXX)
 
 include(image/preprocessing/preprocessing_test.cmake)
+message(${PREPROCESSING_SOURCE_TEST_FILE})
 
 add_executable(${PROJECT_NAME}
         ${PREPROCESSING_SOURCE_TEST_FILE}
         )
-message(${PREPROCESSING_SOURCE_TEST_FILE})
 target_link_libraries(${PROJECT_NAME}
-        PRIVATE
-        GTest::gtest
-        GTest::gtest_main
-        GTest::gmock
-        GTest::gmock_main
-        honeybadger::image::preprocessing::color
+        PRIVATE GTest::gtest
+        PRIVATE GTest::gtest_main
+        PRIVATE GTest::gmock
+        PRIVATE GTest::gmock_main
+        PRIVATE honeybadger::image::preprocessing::color
         )
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_include_directories(${PROJECT_NAME} PRIVATE ${gtest_SOURCE_DIR}/include)
@@ -26,4 +25,5 @@ set_target_properties(${PROJECT_NAME}
         CXX_STANDARD_REQUIRED ON
         )
 
-gtest_discover_tests(${PROJECT_NAME})
+gtest_discover_tests(${PROJECT_NAME}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin)

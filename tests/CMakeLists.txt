@@ -6,6 +6,6 @@ if (INTEGRATION_TEST)
 endif ()
 
 option(UNIT_TEST "Enable unit test" ON)
-if (INTEGRATION_TEST)
+if (UNIT_TEST)
     add_subdirectory(unit)
 endif ()
