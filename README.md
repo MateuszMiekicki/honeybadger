@@ -22,11 +22,13 @@ In principle, there are three methods of knowing how to act. Documentation, exam
 
 ### Pull request
 
+#### [pull request](docs/contributing_template/pull_request.md)
+
 ### Report bug or feature
 
-#### [bug](docs/issue_template/bug.md)
+#### [bug](docs/contributing_template/bug.md)
 
-#### [feature](docs/issue_template/feature.md)
+#### [feature](docs/contributing_template/feature.md)
 
 ## Branch nomenclature
 
