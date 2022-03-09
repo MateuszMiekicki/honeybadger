@@ -51,7 +51,7 @@ TEST_F(
     honeybadger::image::preprocessing::Color color;
     // when
     const auto expectedResult = color.convertToGrayscale(getSource());
-    // Should
+    // then
     ASSERT_EQ(expectedResult.channels(), numberOfChannels::monochromatic);
     ASSERT_EQ(expectedResult.size(), getGrayscale().size());
     ASSERT_EQ(getGrayscale().channels(), numberOfChannels::monochromatic);
@@ -73,7 +73,7 @@ TEST_F(
     honeybadger::image::preprocessing::Color color;
     // when
     const auto expectedResult = color.thresholding(getSource());
-    // Should
+    // then
     ASSERT_EQ(expectedResult.channels(), numberOfChannels::monochromatic);
     ASSERT_EQ(expectedResult.size(), getGrayscale().size());
     ASSERT_EQ(getThresholding().channels(), numberOfChannels::monochromatic);
@@ -86,3 +86,4 @@ TEST_F(
         }
     }
 }
+

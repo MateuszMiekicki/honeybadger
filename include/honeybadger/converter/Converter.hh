@@ -10,6 +10,8 @@ namespace honeybadger::converter
 class Converter
 {
   public:
+    /// @brief Main method used to convert between type.
+    /// @return Array of byte with converted type.
     virtual std::vector<std::byte> convert() = 0;
     virtual ~Converter() = default;
 };
