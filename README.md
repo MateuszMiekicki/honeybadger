@@ -12,6 +12,7 @@ git clone https://github.com/MateuszMiekicki/honeybadger.git
 cd honeybadger
 cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Relese 
 cmake --build build --target INSTALL
+cd config/
 ```
 
 ## Usage
