@@ -5,6 +5,19 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MateuszMiekicki_honeybadger&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=MateuszMiekicki_honeybadger)
 [![Coverage Status](https://coveralls.io/repos/github/MateuszMiekicki/honeybadger/badge.svg?branch=master)](https://coveralls.io/github/MateuszMiekicki/honeybadger?branch=master)
 
+## Important files
+
+1. [License](LICENSE)
+2. [Security](SECURITY.md)
+3. For Contributors
+    1. [pull request](docs/contributing_template/pull_request.md)
+    2. [bug](docs/contributing_template/bug.md)
+    3. [feature](docs/contributing_template/feature.md)
+    4. [ADR](docs/architecture_decision_record/README.md)
+4. [Changelog](CHANGELOG.md)
+5. [Vision]()
+6. [Code Of Conduct](CODE_OF_CONDUCT.md)
+
 ## Build
 
 ```bash
@@ -18,18 +31,6 @@ cd config/
 ## Usage
 
 In principle, there are three methods of knowing how to act. Documentation, examples and tests.
-
-## Contributing
-
-### Pull request
-
-#### [pull request](docs/contributing_template/pull_request.md)
-
-### Report bug or feature
-
-#### [bug](docs/contributing_template/bug.md)
-
-#### [feature](docs/contributing_template/feature.md)
 
 ## Branch nomenclature
 
