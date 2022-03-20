@@ -5,7 +5,7 @@ message(STATUS "Tesseract libs: ${TESSERACT_LIBRARY_DIRS}")
 pkg_search_module(LEPTONICA REQUIRED QUIET lept)
 message(STATUS "Leptonica include dirs: ${LEPTONICA_INCLUDE_DIRS}")
 message(STATUS "Leptonica libs: ${LEPTONICA_LIBRARY_DIRS}")
-if(NOT Tesseract_FOUND)
+if (NOT Tesseract_FOUND)
     # ToDo: Make it so that if it can't find tesseract, let it download from git.
-endif()
+endif ()
 

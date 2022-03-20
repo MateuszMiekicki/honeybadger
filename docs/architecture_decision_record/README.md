@@ -1,5 +1,7 @@
 # Architecture Decision Record
+
 ## Template
+
 [Template for ADR](template.md)
 
 ## **TL;DR Have you made a significant decision that impacts how engineers write software? Write an ADR!**
