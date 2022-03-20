@@ -1,6 +1,6 @@
 #ifndef HONEYBADGER_COLOR_HH
 #define HONEYBADGER_COLOR_HH
-#include <opencv4/opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 
 namespace honeybadger::image::preprocessing
 {
