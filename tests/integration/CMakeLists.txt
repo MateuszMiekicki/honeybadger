@@ -8,9 +8,9 @@ add_executable(${PROJECT_NAME}
         )
 target_link_libraries(${PROJECT_NAME}
         PRIVATE GTest::gtest
+        PRIVATE GTest::gmock_main
         PRIVATE GTest::gtest_main
         PRIVATE GTest::gmock
-        PRIVATE GTest::gmock_main
         PRIVATE honeybadger::image::preprocessing::color
         )
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
