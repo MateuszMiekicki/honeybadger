@@ -1,5 +1,5 @@
-#ifndef HONEYBADGER_COLOR_HH
-#define HONEYBADGER_COLOR_HH
+#ifndef HONEYBADGER_IMAGE_PREPROCESSING_COLOR_HH
+#define HONEYBADGER_IMAGE_PREPROCESSING_COLOR_HH
 #include <opencv2/opencv.hpp>
 
 namespace honeybadger::image::preprocessing
