@@ -77,17 +77,24 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>honeybadger::converter</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classhoneybadger_1_1converter_1_1Converter.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhoneybadger_1_1converter_1_1Converter.html">Converter</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classhoneybadger_1_1converter_1_1Converter.html#a5821d4912bb4a60d8194cbe5ce5d323a">   15</a></span>&#160;    <span class="keyword">virtual</span> std::vector&lt;std::byte&gt; <a class="code" href="classhoneybadger_1_1converter_1_1Converter.html#a5821d4912bb4a60d8194cbe5ce5d323a">convert</a>() = 0;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classhoneybadger_1_1converter_1_1Converter.html">Converter</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <span class="comment">// namespace honeybadger::converter</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclasshoneybadger_1_1converter_1_1Converter_html"><div class="ttname"><a href="classhoneybadger_1_1converter_1_1Converter.html">honeybadger::converter::Converter</a></div><div class="ttdoc">An interface for classes that will be responsible for converting one type of file into another....</div><div class="ttdef"><b>Definition:</b> Converter.hh:11</div></div>
-<div class="ttc" id="aclasshoneybadger_1_1converter_1_1Converter_html_a5821d4912bb4a60d8194cbe5ce5d323a"><div class="ttname"><a href="classhoneybadger_1_1converter_1_1Converter.html#a5821d4912bb4a60d8194cbe5ce5d323a">honeybadger::converter::Converter::convert</a></div><div class="ttdeci">virtual std::vector&lt; std::byte &gt; convert()=0</div><div class="ttdoc">Main method used to convert between type.</div></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">enum class</span> Format</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    Undefined = 0,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    PDF,</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    PNG</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;};</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classhoneybadger_1_1converter_1_1Converter.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhoneybadger_1_1converter_1_1Converter.html">Converter</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classhoneybadger_1_1converter_1_1Converter.html#aa85fd7e3a2bc215392f272c5e4ddf1fa">   23</a></span>&#160;    <span class="keyword">virtual</span> std::vector&lt;std::byte&gt; <a class="code" href="classhoneybadger_1_1converter_1_1Converter.html#aa85fd7e3a2bc215392f272c5e4ddf1fa">convert</a>(<span class="keyword">const</span> Format convertTo) = 0;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classhoneybadger_1_1converter_1_1Converter.html">Converter</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;} <span class="comment">// namespace honeybadger::converter</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclasshoneybadger_1_1converter_1_1Converter_html"><div class="ttname"><a href="classhoneybadger_1_1converter_1_1Converter.html">honeybadger::converter::Converter</a></div><div class="ttdoc">An interface for classes that will be responsible for converting one type of file into another....</div><div class="ttdef"><b>Definition:</b> Converter.hh:18</div></div>
+<div class="ttc" id="aclasshoneybadger_1_1converter_1_1Converter_html_aa85fd7e3a2bc215392f272c5e4ddf1fa"><div class="ttname"><a href="classhoneybadger_1_1converter_1_1Converter.html#aa85fd7e3a2bc215392f272c5e4ddf1fa">honeybadger::converter::Converter::convert</a></div><div class="ttdeci">virtual std::vector&lt; std::byte &gt; convert(const Format convertTo)=0</div><div class="ttdoc">Main method used to convert between type.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -81,15 +81,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5821d4912bb4a60d8194cbe5ce5d323a"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::byte &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhoneybadger_1_1converter_1_1Converter.html#a5821d4912bb4a60d8194cbe5ce5d323a">convert</a> ()=0</td></tr>
-<tr class="memdesc:a5821d4912bb4a60d8194cbe5ce5d323a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main method used to convert between type.  <a href="classhoneybadger_1_1converter_1_1Converter.html#a5821d4912bb4a60d8194cbe5ce5d323a">More...</a><br /></td></tr>
-<tr class="separator:a5821d4912bb4a60d8194cbe5ce5d323a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85fd7e3a2bc215392f272c5e4ddf1fa"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::byte &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhoneybadger_1_1converter_1_1Converter.html#aa85fd7e3a2bc215392f272c5e4ddf1fa">convert</a> (const Format convertTo)=0</td></tr>
+<tr class="memdesc:aa85fd7e3a2bc215392f272c5e4ddf1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main method used to convert between type.  <a href="classhoneybadger_1_1converter_1_1Converter.html#aa85fd7e3a2bc215392f272c5e4ddf1fa">More...</a><br /></td></tr>
+<tr class="separator:aa85fd7e3a2bc215392f272c5e4ddf1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An interface for classes that will be responsible for converting one type of file into another. By default, these are image/pdf/text files. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5821d4912bb4a60d8194cbe5ce5d323a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5821d4912bb4a60d8194cbe5ce5d323a">&#9670;&nbsp;</a></span>convert()</h2>
+<a id="aa85fd7e3a2bc215392f272c5e4ddf1fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa85fd7e3a2bc215392f272c5e4ddf1fa">&#9670;&nbsp;</a></span>convert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -100,7 +100,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual std::vector&lt;std::byte&gt; honeybadger::converter::Converter::convert </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const Format&#160;</td>
+          <td class="paramname"><em>convertTo</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -112,6 +113,12 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Main method used to convert between type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">convertTo</td><td>What you want to convert the PDF to. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Array of byte with converted type. </dd></dl>
 
 </div>
