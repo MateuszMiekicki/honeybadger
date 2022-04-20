@@ -1,11 +1,11 @@
-include(thirdparty/googletest.cmake)
+include(third_party/googletest.cmake)
 
-option(INTEGRATION_TEST "Enable integration test" ON)
-if (INTEGRATION_TEST)
-    add_subdirectory(integration)
+option(INTEGRATION_TESTS "Enable integration tests" ON)
+if (INTEGRATION_TESTS)
+    add_subdirectory(integration_tests)
 endif ()
 
-option(UNIT_TEST "Enable unit test" ON)
-if (UNIT_TEST)
-    add_subdirectory(unit)
+option(UNIT_TESTS "Enable unit tests" ON)
+if (UNIT_TESTS)
+    add_subdirectory(unit_tests)
 endif ()

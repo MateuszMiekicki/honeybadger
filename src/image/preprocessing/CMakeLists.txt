@@ -1,7 +1,7 @@
 project(preprocessing VERSION 0.1.0 LANGUAGES CXX)
 include(PrintInfo)
 print_info_about_project()
-include(${CMAKE_SOURCE_DIR}/thirdparty/opencv.cmake)
+include(${CMAKE_SOURCE_DIR}/third_party/opencv.cmake)
 aux_source_directory(. SOURCE)
 add_library(${PROJECT_NAME}
         ${SOURCE}

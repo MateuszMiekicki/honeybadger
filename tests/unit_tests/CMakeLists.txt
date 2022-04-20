@@ -1,4 +1,4 @@
-project(test_integration_${CMAKE_PROJECT_NAME} LANGUAGES CXX)
+project(unit_tests_${CMAKE_PROJECT_NAME} LANGUAGES CXX)
 
 include(image/preprocessing/preprocessing_test.cmake)
 message(${PREPROCESSING_SOURCE_TEST_FILE})

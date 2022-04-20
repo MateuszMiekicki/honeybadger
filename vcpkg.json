@@ -1,0 +1,10 @@
+{
+  "name": "honeybadger",
+  "version-semver": "1.0.0",
+  "dependencies": [
+    "opencv",
+    "gtest",
+    "benchmark",
+    "tesseract"
+  ]
+}
